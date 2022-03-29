@@ -133,4 +133,11 @@ module.exports = class UserController{
                 return;
         }
     }
+
+    static async editUser(req, res){
+        res.status(200).json({message: 'Deu certo o update!'});
+        return;
+    }
+
+
 }
