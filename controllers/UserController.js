@@ -157,39 +157,47 @@ module.exports = class UserController{
             return;    
         }
 
-        // Check if email has already taken
-        const userExists = await User.findOne({email: email});
+        // check if user exists
+        const userExists = await User.findOne({ email: email })
 
-        if(user.email == email && userExists){
-            res.status(422).json({message: 'Por favor, utilize outro e-mail!'});
-            return;
+        if (user.email !== email && userExists) {
+        res.status(422).json({ message: 'Por favor, utilize outro e-mail!' })
+        return
         }
 
-        user.email = email;
+        user.email = email
 
         if(!phone){
             res.status(422).json({message: 'O telefone é obrigatório!'});
             return;    
         }
 
-        if(!password){
-            res.status(422).json({message: 'A senha é obrigatória!'});
-            return;    
-        }
-
-        if(!confirmpassword){
-            res.status(422).json({message: 'A confirmação de senha é obrigatória!'});
-            return;    
-        }
+        user.phone = phone;
 
         if(password !== confirmpassword){
             res.status(422).json({message: 'A senha e a confirmação de senha precisam ser iguais!'});
             return;    
+        } else if(password === confirmpassword && password != null){
+            // Create a password
+            const salt = await bcrypt.genSalt(12);
+            const passwordHash = await bcrypt.hash(password, salt);
+
+            user.password = passwordHash;
         }
 
-        if(!user){
-            res.status(422).json({message: 'Usuário não encontrado!'});
+        try {
+            // Return user updated data
+            await User.findByIdAndUpdate(
+                {_id: user.id},
+                {$set: user},
+                {new: true},
+            );
+
+            res.status(200).json({message: "Usuário atualizado com sucesso!"});
+        } catch (error) {
+            res.status(500).json({message: error});
             return;
-        }
+        }   
+
     }
 }
