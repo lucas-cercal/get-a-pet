@@ -8,6 +8,7 @@ module.exports = class PetController{
     // Create a pet
     static async create (req, res){
         const {name, age, weight, color} = req.body;
+        const images = req.files;
 
         const available = true;
 
@@ -31,6 +32,10 @@ module.exports = class PetController{
             res.status(422).json({message: "A cor é obrigatória!"});
             return;
         }
+        if(images.length === 0){
+            res.status(422).json({message: "A imagem é obrigatória!"});
+            return;
+        }
 
         // Get pet owner
         const token = getToken(req);
@@ -51,6 +56,10 @@ module.exports = class PetController{
                 phone: user.phone,
             }
         });
+
+        images.map((image) => {
+            pet.images.push(image.filename);
+        })
 
         try {
             const newPet = await pet.save();
