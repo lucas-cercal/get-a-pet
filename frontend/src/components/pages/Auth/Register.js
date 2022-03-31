@@ -1,9 +1,12 @@
 import Input from "../../form/Input";
 import {Link} from 'react-router-dom';
+import {useState} from 'react';
 
 import styles from "../../form/Form.module.css";
 
 function Register() {
+    const [user, setUser] = useState
+
     function handleChange(e){
 
     }
