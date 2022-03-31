@@ -1,7 +1,7 @@
 .env
 node_modules
-backend/public/images/pets/*.png
-backend/public/images/pets/*.jpg
-backend/public/images/users/*.png
-backend/public/images/users/*.jpg
+public/images/pets/*.png
+public/images/pets/*.jpg
+public/images/users/*.png
+public/images/users/*.jpg
 
