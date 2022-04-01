@@ -10,7 +10,7 @@ import {Context} from '../../context/UserContext';
 
 function Navbar() {
 
-  const {authenticated} = useContext(Context);
+  const {authenticated, logout} = useContext(Context);
 
   return (
     <nav className={styles.navbar}>
@@ -24,7 +24,7 @@ function Navbar() {
         </li>
         {authenticated ? (
         <>
-          <p>Logado</p>
+          <li onClick={logout}>Sair</li>
         </>
         ) : (
           <>
