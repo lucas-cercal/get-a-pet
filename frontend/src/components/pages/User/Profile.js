@@ -7,8 +7,9 @@ import { useState, useEffect } from 'react'
 import styles from './Profile.module.css'
 import formStyles from '../../form/Form.module.css'
 
-/* hooks */
+/* HOOKS */
 import useFlashMessage from '../../../hooks/useFlashMessage'
+import RoundedImage from '../../layout/RoundedImage'
  
 
 function Profile() {
