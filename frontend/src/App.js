@@ -11,10 +11,11 @@ import Login from './components/pages/Auth/Login';
 import Register from './components/pages/Auth/Register';
 import Home from './components/pages/Home';
 import Profile from './components/pages/User/Profile';
+import MyPets from './components/pages/Pets/MyPets';
+import AddPet from './components/pages/Pets/AddPet';
 
 /* CONTEXT */
 import {UserProvider} from './context/UserContext';
-import MyPets from './components/pages/Pets/MyPets';
 
 function App() {
   return (
@@ -33,8 +34,11 @@ function App() {
             <Route path="/user/profile">
               <Profile/>
             </Route>
-            <Route path="/pets/mypets">
+            <Route path="/pet/mypets">
               <MyPets/>
+            </Route>
+            <Route path="/pet/add">
+              <AddPet/>
             </Route>
             <Route path="/">
               <Home/>
