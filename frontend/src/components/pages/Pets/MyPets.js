@@ -49,7 +49,7 @@ export default function MyPets() {
   return (
     <section>
       <div className={styles.petlist_header}>
-        <h1>MyPets</h1>
+        <h1>Meus pets</h1>
         <Link to="/pet/add">Cadastrar Pet</Link>
       </div>
       <div className={styles.petlist_container}>
