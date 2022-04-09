@@ -25,7 +25,33 @@ export default function PetEdit() {
   }, [token, id])
 
   async function updatePet(pet){
+    let msgType = 'success'
 
+    const formData = new FormData()
+    
+    await Object.keys(pet).forEach((key) => {
+      if(key === 'images'){
+        for(let i = 0; i < pet[key].length; i++){
+          formData.append('images', pet[key][i])
+        }
+      } else {
+        formData.append(key, pet[key])
+      }
+    })
+
+    const data = await api.patch(`pets/${pet._id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then((response) => {
+      return response.data
+    }).catch((err) => {
+      msgType = 'error'
+      return err.response.data
+    })
+
+    setFlashMessage(data.message, msgType)
   }
 
   return (
