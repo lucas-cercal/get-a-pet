@@ -34,7 +34,7 @@ export default function MyPets() {
         Authorization: `Bearer ${JSON.parse(token)}`
       }
     }).then((response) => {
-      const updatedPets = pets.filter((pet) => pet._id != id)
+      const updatedPets = pets.filter((pet) => pet._id !== id)
       setPets(updatedPets)
       return response.data
     })
