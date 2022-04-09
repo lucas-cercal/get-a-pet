@@ -44,9 +44,11 @@ export default function PetEdit() {
         Authorization: `Bearer ${JSON.parse(token)}`,
         'Content-Type': 'multipart/form-data'
       }
-    }).then((response) => {
+    })
+    .then((response) => {
       return response.data
-    }).catch((err) => {
+    })
+    .catch((err) => {
       msgType = 'error'
       return err.response.data
     })
